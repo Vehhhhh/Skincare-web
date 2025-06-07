@@ -202,6 +202,17 @@
 
     </section>
 
+    <section class="section">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h4>Today Orders</h4>
+            </div>
+            <div class="card-body">
+                {{ $dataTable->table() }}
+            </div>
+        </div>
+    </section>
+
     <!-- Modal -->
     <div class="modal fade" id="order_modal" tabindex="-1" role="dialog" aria-labelledby="order_modal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -243,7 +254,7 @@
         </div>
     </div>
 @endsection
-{{-- @push('scripts')
+ @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
     <script>
@@ -309,4 +320,4 @@
             });
         });
     </script>
-@endpush --}}
+@endpush 

@@ -62,8 +62,8 @@
             </li> --}}
 
             <li class="dropdown {{ setSidebarActive(['admin.category.*', 'admin.product.*']) }}">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                        class="fas fa-shopping-cart"></i>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fas fa-shopping-cart"></i>
                     <span>Manage Products</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.category.*']) }}"><a class="nav-link"
@@ -71,6 +71,35 @@
                     </li>
                     <li class="{{ setSidebarActive(['admin.product.*']) }}"><a class="nav-link"
                             href="{{ route('admin.product.index') }}">Products</a>
+                    </li>
+                </ul>
+            </li>
+
+           <li
+                class="dropdown {{ setSidebarActive([
+                    'staff.orders.*',
+                    'staff.pending-orders',
+                    'staff.inprocess-orders',
+                    'staff.delivered-orders',
+                    'staff.declined-orders',
+                ]) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box"></i>
+                    <span>Orders</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSidebarActive(['admin.orders.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.orders.index') }}">All Orders</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.pending-orders']) }}"><a class="nav-link"
+                            href="{{ route('admin.pending-orders') }}">Pending Orders</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.inprocess-orders']) }}"><a class="nav-link"
+                            href="{{ route('admin.inprocess-orders') }}">In Process Orders</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.delivered-orders']) }}"><a class="nav-link"
+                            href="{{ route('admin.delivered-orders') }}">Delivered Orders</a>
+                    </li>
+                    <li class="{{ setSidebarActive(['admin.declined-orders']) }}"><a class="nav-link"
+                            href="{{ route('admin.declined-orders') }}">Declined Orders</a>
                     </li>
                 </ul>
             </li>
@@ -91,6 +120,16 @@
             <li class="{{ setSidebarActive(['admin.admin-management.*']) }}"><a class="nav-link"
                     href="{{ route('admin.admin-management.index') }}"><i class="fas fa-user-shield"></i>
                     <span>Admin Management</span></a>
+            </li>
+
+            <li class="dropdown {{ setSidebarActive(['admin.delivery-area.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-store"></i>
+                    <span>Manage Ecommerce</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSidebarActive(['admin.delivery-area.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.delivery-area.index') }}">Delivery Area</a>
+                    </li>
+                </ul>
             </li>
 
             <li class="{{ setSidebarActive(['admin.setting.*']) }}"><a class="nav-link"

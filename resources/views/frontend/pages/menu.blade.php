@@ -8,10 +8,10 @@
         <div class="fp__breadcrumb_overlay">
             <div class="container">
                 <div class="fp__breadcrumb_text">
-                    <h1>Promotions</h1>
+                    <h1>All Products</h1>
                     <ul>
                         <li><a href="{{ url('/') }}">home</a></li>
-                        <li><a href="javascript:;">promotions</a></li>
+                        <li><a href="javascript:;">All Products</a></li>
                     </ul>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                             </h5>
                             <ul class="d-flex flex-wrap justify-content-center">
                                 <li><a href="javascript:;" onclick="loadProductModal('{{ $product->id }}')"><i class="fas fa-shopping-basket"></i></a></li>
-                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                {{-- <li><a href="#"><i class="fal fa-heart"></i></a></li> --}}
                                 <li><a href="{{ route('product.show', $product->slug) }}"><i class="far fa-eye"></i></a></li>
                             </ul>
                         </div>

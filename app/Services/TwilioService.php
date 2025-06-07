@@ -16,32 +16,55 @@ class TwilioService
     }
 
     public function sendOTP($phoneNumber, $resend = false)
-    {
-        $twilio_verify_sid = env('TWILIO_VERIFY_SID');
+{
+    $twilio_verify_sid = env('TWILIO_VERIFY_SID');
 
-        try {
-            // If it's a resend, we want to send a new OTP
-            if ($resend) {
-                $this->twilio->verify->v2->services($twilio_verify_sid)
-                    ->verifications
-                    ->create($phoneNumber, "sms", ['new_code_lifetime' => 180]); // Specify a new code lifetime if needed
-            } else {
-                // If it's not a resend, we want to initiate a new verification
-                $this->twilio->verify->v2->services($twilio_verify_sid)
-                    ->verifications
-                    ->create($phoneNumber, "sms");
-            }
-        } catch (\Twilio\Exceptions\RestException $e) {
-            return $e->getMessage(); // Returning the error message
+    try {
+        if (!$twilio_verify_sid) {
+            throw new \Exception("Verify SID not configured.");
         }
+
+        $verificationService = $this->twilio->verify->v2->services($twilio_verify_sid);
+
+        if ($resend) {
+            $verificationService->verifications
+                ->create($phoneNumber, "sms", ['new_code_lifetime' => 180]);
+        } else {
+            $verificationService->verifications
+                ->create($phoneNumber, "sms");
+        }
+    } catch (\Exception $e) {
+        return $e->getMessage(); // Log this in real apps
+    }
+}
+
+
+   public function verifyOTP($phoneNumber, $otp)
+{
+    $twilio_verify_sid = env('TWILIO_VERIFY_SID');
+
+    if (!$twilio_verify_sid) {
+        return "Missing TWILIO_VERIFY_SID in .env";
     }
 
-    public function verifyOTP($phoneNumber, $otp)
-    {
-        $twilio_verify_sid = env('TWILIO_VERIFY_SID');
+    try {
+        if (!$otp || !$phoneNumber) {
+            return "Missing OTP or phone number.";
+        }
+
         $verification = $this->twilio->verify->v2->services($twilio_verify_sid)
             ->verificationChecks
-            ->create(['code' => $otp, 'to' => $phoneNumber]);
-        return $verification->status == 'approved';
+            ->create([
+                'to' => $phoneNumber,
+                'code' => $otp,
+            ]);
+
+        return $verification->status === 'approved';
+    } catch (\Twilio\Exceptions\RestException $e) {
+        return 'Twilio Error: ' . $e->getMessage() . ' (Code: ' . $e->getCode() . ')';
+    } catch (\Exception $e) {
+        return 'General Error: ' . $e->getMessage();
     }
+}
+
 }

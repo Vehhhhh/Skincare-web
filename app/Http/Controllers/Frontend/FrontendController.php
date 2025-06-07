@@ -17,6 +17,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View as FacadesView;
 use Illuminate\Validation\ValidationException;
+
 use Response;
 
 class FrontendController extends Controller
@@ -95,19 +96,13 @@ class FrontendController extends Controller
         return view('frontend.layouts.ajax-files.product-popup-modal', compact('product'))->render();
     }
 
-    function about(): View
-    {
-        $keys = [
-            'why_choose_top_title',
-            'why_choose_main_title',
-            'why_choose_sub_title'
-        ];
+   public function about()
+{
+    $categories = Category::all();
+    $products = Product::paginate(8); // Get paginated products
 
-        $sectionTitles = SectionTitle::whereIn('key', $keys)->pluck('value', 'key');
-        $about = About::first();
-        $whyChooseUs = WhyChooseUs::where('status', 1)->get();
-        return view('frontend.pages.about', compact('about', 'whyChooseUs', 'sectionTitles'));
-    }
+    return view('frontend.pages.about', compact('categories', 'products'));
+}
 
     function contact() : View {
         $contact = Contact::first();

@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DeliveryAreaController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\ProductOptionController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +50,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::resource('product-option', ProductOptionController::class);
 
+     // Order Routes
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+
+    Route::get('pending-orders', [OrderController::class, 'pendingOrderIndex'])->name('pending-orders');
+    Route::get('inprocess-orders', [OrderController::class, 'inProcessOrderIndex'])->name('inprocess-orders');
+    Route::get('delivered-orders', [OrderController::class, 'deliveredOrderIndex'])->name('delivered-orders');
+    Route::get('declined-orders', [OrderController::class, 'declinedOrderIndex'])->name('declined-orders');
+
+    Route::get('orders/status/{id}', [OrderController::class, 'getOrderStatus'])->name('orders.status');
+    Route::put('orders/status-update/{id}', [OrderController::class, 'orderStatusUpdate'])->name('orders.status-update');
+
     //About Route
     Route::get('about', [AboutController::class, 'index'])->name('about.index');
     Route::put('about', [AboutController::class, 'update'])->name('about.update');
@@ -57,6 +73,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     /** Admin management Routes */
     Route::resource('admin-management', AdminManagementController::class);
+
+    // Delivery Area Routes
+    Route::resource('delivery-area', DeliveryAreaController::class);
 
     /** Setting Route */
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');

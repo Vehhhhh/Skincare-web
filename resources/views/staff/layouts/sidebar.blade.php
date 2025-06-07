@@ -43,7 +43,7 @@
         <div class="sidebar-brand">
             <a href="{{ route('staff.dashboard') }}">House of Beauty</a>
         </div>
-        
+
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
 

@@ -98,7 +98,7 @@
                                     <th class="sl_no">SL</th>
                                     <th class="package">item description</th>
                                     <th class="price">Price</th>
-                                    {{--<th class="qnty">Quantity</th>--}}
+                                    <th class="qnty">Quantity</th>
                                     <th class="total">Total</th>
                                 </tr>
 
@@ -133,9 +133,9 @@
                                         <td class="price">
                                             <b>{{ currencyPosition($item->unit_price) }}</b>
                                         </td>
-                                        {{-- <td class="qnty">
+                                        <td class="qnty">
                                             <b>{{ $item->qty }}</b>
-                                        </td>--}}
+                                        </td>
                                         <td class="total">
                                             <b>{{ currencyPosition($productTotal) }}</b>
                                         </td>
@@ -147,9 +147,9 @@
                                     <td class="package" colspan="3">
                                         <b>sub total</b>
                                     </td>
-                                    {{-- <td class="qnty">
+                                     <td class="qnty">
                                         <b>-</b>
-                                    </td>--}}
+                                    </td>
                                     <td class="total">
                                         <b>{{ currencyPosition($order->subtotal) }}</b>
                                     </td>
@@ -158,9 +158,9 @@
                                     <td class="package coast" colspan="3">
                                         <b>(+) Delivery Cost</b>
                                     </td>
-                                    {{--<td class="qnty">
+                                    <td class="qnty">
                                         <b></b>
-                                    </td>--}}
+                                    </td>
                                     <td class="total coast">
                                         <b>{{ currencyPosition($order->delivery_charge) }}</b>
                                     </td>
@@ -169,9 +169,9 @@
                                     <td class="package" colspan="3">
                                         <b>Total Paid</b>
                                     </td>
-                                    {{-- <td class="qnty">
+                                    <td class="qnty">
                                         <b></b>
-                                    </td>--}}
+                                    </td>
                                     <td class="total">
                                         <b>{{ currencyPosition($order->grand_total) }}</b>
                                     </td>
