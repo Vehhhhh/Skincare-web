@@ -150,23 +150,26 @@
         <div class="chat-widget hidden" id="chat-widget">
             <div class="chat-header" id="chatHeader">
                 <div class="chat-title">
-                    <i class="fas fa-robot"></i>
-                    <span>AI Assistant</span>
+                    <i class="fas fa-leaf"></i>
+                    <span>Skincare Assistant</span>
                 </div>
-                <button class="minimize-btn" id="minimizeBtn">
-                    <i class="fas fa-minus"></i>
-                </button>
+                <div class="chat-header-actions">
+                    <button class="minimize-btn" id="minimizeBtn">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
             </div>
             <div class="chat-body" id="chatBody">
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot">
-                        <div class="message-content">
-                            Hello! How can I help you with skincare today?
+                        <div class="message-avatar">
+                            <i class="fas fa-spa"></i>
                         </div>
+                        <div class="message-content">Hello! I'm your skincare assistant. How can I help you today?</div>
                     </div>
                 </div>
                 <div class="chat-input">
-                    <input type="text" id="userInput" placeholder="Type your message...">
+                    <input type="text" id="userInput" placeholder="Ask about skincare...">
                     <button id="sendBtn">
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -176,6 +179,7 @@
 
         <button class="chat-toggle" id="chatToggle">
             <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
         </button>
     </div>
 
@@ -185,30 +189,34 @@
             bottom: 0;
             right: 0;
             z-index: 9999;
+            font-family: 'Poppins', sans-serif;
         }
 
         #skincare-chatbot-container .chat-widget {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 350px;
+            width: 360px;
             background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
             z-index: 9999;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         #skincare-chatbot-container .chat-header {
-            background: #4a90e2;
+            background: linear-gradient(135deg, #6ab3e9 0%, #4a90e2 100%);
             color: white;
-            padding: 15px;
+            padding: 18px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
         }
 
         #skincare-chatbot-container .chat-title {
@@ -216,53 +224,108 @@
             align-items: center;
             gap: 10px;
             font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+        }
+
+        #skincare-chatbot-container .chat-title i {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        #skincare-chatbot-container .chat-header-actions {
+            display: flex;
+            gap: 5px;
         }
 
         #skincare-chatbot-container .minimize-btn {
-            background: none;
+            background: rgba(255,255,255,0.2);
             border: none;
             color: white;
             cursor: pointer;
-            padding: 5px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        #skincare-chatbot-container .minimize-btn:hover {
+            background: rgba(255,255,255,0.3);
         }
 
         #skincare-chatbot-container .chat-body {
             height: 400px;
             display: flex;
             flex-direction: column;
+            background-color: #f8f9fa;
         }
 
         #skincare-chatbot-container .chat-messages {
             flex: 1;
-            padding: 15px;
+            padding: 20px;
             overflow-y: auto;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMCAxMGMwLTIuMjEuODk1LTQuMjEgMi4zNDMtNS42NTdDMTMuNzkgMi44OTUgMTUuNzkyIDIgMTggMmMyLjIwOCAwIDQuMjEuODk1IDUuNjU3IDIuMzQzQzI1LjEwNSA1Ljc5IDI2IDcuNzkyIDI2IDEwYzAgMi4yMDgtLjg5NSA0LjIxLTIuMzQzIDUuNjU3QzIyLjIxIDE3LjEwNSAyMC4yMDggMTggMTggMThjLTIuMjA4IDAtNC4yMS0uODk1LTUuNjU3LTIuMzQzQzEwLjg5NSAxNC4yMSAxMCAxMi4yMDggMTAgMTB6IiBmaWxsPSIjRDhERUUyIiBmaWxsLW9wYWNpdHk9Ii4yIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+') repeat;
+            background-size: 30px;
         }
 
         #skincare-chatbot-container .message {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
-            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            max-width: 85%;
         }
 
         #skincare-chatbot-container .message.user {
-            align-items: flex-end;
+            margin-left: auto;
+            flex-direction: row-reverse;
         }
 
         #skincare-chatbot-container .message.bot {
-            align-items: flex-start;
+            margin-right: auto;
+        }
+
+        #skincare-chatbot-container .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e6f2ff;
+            color: #4a90e2;
+            font-size: 14px;
+        }
+
+        #skincare-chatbot-container .message.user .message-avatar {
+            background: #4a90e2;
+            color: white;
         }
 
         #skincare-chatbot-container .message-content {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 15px;
-            background: #f0f2f5;
+            padding: 12px 16px;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.5;
+            font-size: 14px;
+            position: relative;
             white-space: pre-wrap;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        #skincare-chatbot-container .message.bot .message-content {
+            border-top-left-radius: 2px;
         }
 
         #skincare-chatbot-container .message.user .message-content {
             background: #4a90e2;
             color: white;
+            border-top-right-radius: 2px;
+            border: none;
         }
 
         #skincare-chatbot-container .chat-input {
@@ -270,27 +333,48 @@
             border-top: 1px solid #eee;
             display: flex;
             gap: 10px;
+            background: #fff;
         }
 
         #skincare-chatbot-container .chat-input input {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
+            padding: 12px 15px;
+            border: 1px solid #e1e4e8;
+            border-radius: 25px;
             outline: none;
+            font-size: 14px;
+            transition: border 0.3s, box-shadow 0.3s;
+            font-family: inherit;
+        }
+
+        #skincare-chatbot-container .chat-input input:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74,144,226,0.15);
         }
 
         #skincare-chatbot-container .chat-input button {
-            background: #4a90e2;
+            background: linear-gradient(135deg, #6ab3e9 0%, #4a90e2 100%);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 3px 8px rgba(74,144,226,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #skincare-chatbot-container .chat-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(74,144,226,0.4);
+        }
+
+        #skincare-chatbot-container .chat-input button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(74,144,226,0.3);
         }
 
         #skincare-chatbot-container .chat-toggle {
@@ -299,7 +383,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background: #4a90e2;
+            background: linear-gradient(135deg, #6ab3e9 0%, #4a90e2 100%);
             color: white;
             border: none;
             border-radius: 50%;
@@ -307,9 +391,39 @@
             display: flex !important;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(74,144,226,0.4);
             z-index: 9999;
             font-size: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #skincare-chatbot-container .chat-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74,144,226,0.5);
+        }
+
+        #skincare-chatbot-container .chat-toggle .pulse-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 16px;
+            height: 16px;
+            background-color: #5CE87C;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        #skincare-chatbot-container .chat-toggle .pulse-dot:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #5CE87C;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            z-index: -1;
         }
 
         #skincare-chatbot-container .chat-widget.minimized {
@@ -325,12 +439,14 @@
             align-items: center;
             justify-content: center;
             min-width: 60px;
+            background: #f1f3f5;
+            border: none;
         }
 
         #skincare-chatbot-container .dot {
             width: 8px;
             height: 8px;
-            background-color: #999;
+            background-color: #adb5bd;
             border-radius: 50%;
             margin: 0 3px;
             animation: dot-pulse 1.5s infinite ease-in-out;
@@ -349,11 +465,30 @@
             50% { transform: scale(1); opacity: 1; }
         }
 
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            70% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
         @media (max-width: 576px) {
             #skincare-chatbot-container .chat-widget {
-                width: 90%;
-                right: 5%;
-                left: 5%;
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 80px;
+            }
+
+            #skincare-chatbot-container .chat-body {
+                height: 350px;
             }
         }
     </style>
@@ -395,6 +530,7 @@
                 console.log('Toggle button clicked');
                 chatWidget.classList.remove('hidden');
                 chatToggle.classList.add('hidden');
+                userInput.focus(); // Focus on input field when chat is opened
             });
 
             // Minimize chat widget
@@ -414,13 +550,21 @@
                     // Show loading indicator
                     const loadingDiv = document.createElement('div');
                     loadingDiv.className = 'message bot';
-                    loadingDiv.innerHTML = `
-                        <div class="message-content loading">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
+
+                    // Add avatar to loading message
+                    const avatarDiv = document.createElement('div');
+                    avatarDiv.className = 'message-avatar';
+                    avatarDiv.innerHTML = '<i class="fas fa-spa"></i>';
+                    loadingDiv.appendChild(avatarDiv);
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = 'message-content loading';
+                    contentDiv.innerHTML = `
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
                     `;
+                    loadingDiv.appendChild(contentDiv);
                     chatMessages.appendChild(loadingDiv);
                     chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -473,11 +617,25 @@
             function addMessage(text, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${sender}`;
-                messageDiv.innerHTML = `
-                    <div class="message-content">
-                        ${text}
-                    </div>
-                `;
+
+                // Add avatar based on sender
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'message-avatar';
+
+                if (sender === 'user') {
+                    avatarDiv.innerHTML = '<i class="fas fa-user"></i>';
+                } else {
+                    avatarDiv.innerHTML = '<i class="fas fa-spa"></i>';
+                }
+
+                messageDiv.appendChild(avatarDiv);
+
+                // Add message content
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = text;
+                messageDiv.appendChild(contentDiv);
+
                 chatMessages.appendChild(messageDiv);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
@@ -493,7 +651,7 @@
             });
 
             // Add a test message to check if chatbot is working
-            addMessage("Chatbot initialized. Try asking me a question about skincare!", 'bot');
+            // Removing initial test message as we already have a welcome message
             console.log('Chatbot initialized with OpenAI integration');
         }
     })();
