@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -75,6 +76,9 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact.in
 
 /**Menu page Routes */
 Route::get('/menu', [FrontendController::class, 'menu'])->name('menu.index');
+
+/**Chatbot Route */
+Route::post('/chatbot/send', [ChatbotController::class, 'sendMessage'])->name('chatbot.send');
 
 //Reservation Routes
 Route::post('/reservation', [FrontendController::class, 'reservation'])->name('reservation.store');
